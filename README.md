@@ -11,6 +11,10 @@ This is an official repository for the paper "VisionTrim: Unified Vision Token C
 </div>
 
 With two effective plug-and-play modules (DVTS and TGVC) that accelerate both vision encoding and LLM decoding stages, VisionTrim achieves **98.8%** of the original performance with an **88.9%** reduction ratio in token count **without additional training costs**, consistently surpassing previous SOTA methods across various reduction ratios in both image and video understanding tasks.
+#
+### 📰 News
+* **`Feb. 1st, 2026`:** We released our code! Paper is coming soon. Please stay tuned! ☕️
+* **`Jan. 29th, 2026`:** VisionTrim is accepted by ICLR 2026!
 
 ## ⚙️ Setup
 
@@ -19,7 +23,7 @@ With two effective plug-and-play modules (DVTS and TGVC) that accelerate both vi
 1. Clone this repository.
 
 ```bash
-git clone xxxxxx
+git clone https://github.com/hanxunyu/VisionTrim.git
 cd VisionTrim
 ```
 
