@@ -1,5 +1,5 @@
 <h2 align="center">
-  <b>⚡️ VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration</b>
+  <b>⚡️ VisionTrim: Unified Vision Token Compression for <br> Training-Free MLLM Acceleration</b>
   
   <b>[ICLR 2026]</b>
 </h2>
@@ -7,7 +7,7 @@
 This is an official repository for the paper "VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration".
 
 <div align="left">
-<img src="assets/pipeline-visiontrim.png" width="99%" alt="Inst3D-LLM">
+<img src="assets/pipeline-visiontrim.png" width="99%" alt="VisionTrim">
 </div>
 
 With two effective plug-and-play modules (DVTS and TGVC) that accelerate both vision encoding and LLM decoding stages, VisionTrim achieves **98.8%** of the original performance with an **88.9%** reduction ratio in token count **without additional training costs**, consistently surpassing previous SOTA methods across various reduction ratios in both image and video understanding tasks.
