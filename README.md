@@ -10,7 +10,7 @@ This is an official repository for the paper ["VisionTrim: Unified Vision Token 
 <img src="assets/pipeline-visiontrim.png" width="99%" alt="VisionTrim">
 </div>
 
-With two effective plug-and-play modules (DVTS and TGVC) that accelerate both vision encoding and LLM decoding stages, VisionTrim achieves **98.8%** of the original performance with an **88.9%** reduction ratio in token count **without additional training costs**, consistently surpassing previous SOTA methods across various reduction ratios in both image and video understanding tasks.
+Multimodal large language models (MLLMs) suffer from high computational costs due to excessive visual tokens, particularly in high-resolution and video-based scenarios. Existing token reduction methods typically focus on isolated pipeline components and often neglect textual alignment, leading to performance degradation. In this paper, we propose VisionTrim, a unified framework for training-free MLLM acceleration, integrating two effective plug-and-play modules: 1) the Dominant Vision Token Selection (DVTS) module, which preserves essential visual tokens via a global-local view, and 2) the Text-Guided Vision Complement (TGVC)module, which facilitates context-aware token merging guided by textual cues. Extensive experiments across diverse image and video multimodal benchmarks demonstrate the performance superiority of our VisionTrim, advancing practical MLLM deployment in real-world applications.
 #
 ### 📰 News
 * **`Feb. 2nd, 2026`:** Paper is available at [arXiv](https://arxiv.org/abs/2601.22674).
