@@ -1,18 +1,19 @@
 <h2 align="center">
   <b>⚡️ VisionTrim: Unified Vision Token Compression for <br> Training-Free MLLM Acceleration</b>
-  
+
   <b>[ICLR 2026]</b>
 </h2>
 
-This is an official repository for the paper "VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration".
+This is an official repository for the paper ["VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration"](https://arxiv.org/abs/2601.22674).
 
 <div align="left">
 <img src="assets/pipeline-visiontrim.png" width="99%" alt="VisionTrim">
 </div>
 
-With two effective plug-and-play modules (DVTS and TGVC) that accelerate both vision encoding and LLM decoding stages, VisionTrim achieves **98.8%** of the original performance with an **88.9%** reduction ratio in token count **without additional training costs**, consistently surpassing previous SOTA methods across various reduction ratios in both image and video understanding tasks.
+Multimodal large language models (MLLMs) suffer from high computational costs due to excessive visual tokens, particularly in high-resolution and video-based scenarios. Existing token reduction methods typically focus on isolated pipeline components and often neglect textual alignment, leading to performance degradation. In this paper, we propose VisionTrim, a unified framework for training-free MLLM acceleration, integrating two effective plug-and-play modules: 1) the Dominant Vision Token Selection (DVTS) module, which preserves essential visual tokens via a global-local view, and 2) the Text-Guided Vision Complement (TGVC)module, which facilitates context-aware token merging guided by textual cues.
 #
 ### 📰 News
+* **`Feb. 2nd, 2026`:** Paper is available at [arXiv](https://arxiv.org/abs/2601.22674).
 * **`Jan. 26th, 2026`:** VisionTrim is accepted by ICLR 2026!
 
 ## ⚙️ Setup
@@ -32,6 +33,7 @@ cd VisionTrim
 conda create -n visiontrim python=3.10 -y
 conda activate visiontrim
 pip install -e .
+pip install protobuf
 ```
 
 3. (Optional) Install FlashAttention for further inference acceleration.
@@ -79,7 +81,7 @@ bash scripts/v1_5/analyze_attn_dispersion.sh
 
 The main implementation of our VisionTrim is mainly in [`llava_llama.py`](llava/model/language_model/llava_llama.py), [`clip_encoder.py`](llava/model/multimodal_encoder/clip_encoder.py), [`llava_arch.py`](llava/model/llava_arch.py), [`model_vqa.py`](llava/eval/model_vqa.py), and [`model_vqa_loader.py`](llava/eval/model_vqa_loader.py)
 
-We provide the evaluation scripts for each benchmark under `./scripts/v1_5/eval`, you need to set the **start layer** and **remaining visual token number** as the bash argument. The detailed guidance for evaluation commands and online submission of each benchmark can be found in [EVAL.md](EVAL.md).
+We provide the evaluation scripts for each benchmark under `./scripts/v1_5/eval`, you need to set the **DVTS_token_num** and **TGVC_token_num** as the bash argument. The detailed guidance for evaluation commands and online submission of each benchmark can be found in [EVAL.md](EVAL.md).
 
 For evaluation with the 13B LLM, you just need to replace the `CKPT` argument from `llava-v1.5-7b` to `llava-v1.5-13b` in each script. And for evaluation with LLaVA-NeXT, you can use the scripts in `./scripts/v1_6/eval`. 
 
@@ -90,7 +92,7 @@ For evaluation with the 13B LLM, you just need to replace the `CKPT` argument fr
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/gqa.sh $layer $token_num
+bash scripts/v1_5/eval/gqa.sh $token_num $token_complement
 ```
 
 ### ScienceQA
@@ -100,7 +102,7 @@ bash scripts/v1_5/eval/gqa.sh $layer $token_num
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/sqa.sh $layer $token_num
+bash scripts/v1_5/eval/sqa.sh $token_num $token_complement
 ```
 
 ### TextVQA
@@ -110,7 +112,7 @@ bash scripts/v1_5/eval/sqa.sh $layer $token_num
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/textvqa.sh $layer $token_num
+bash scripts/v1_5/eval/textvqa.sh $token_num $token_complement
 ```
 
 ### POPE
@@ -120,7 +122,7 @@ bash scripts/v1_5/eval/textvqa.sh $layer $token_num
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/pope.sh $layer $token_num
+bash scripts/v1_5/eval/pope.sh $token_num $token_complement
 ```
 
 ### MMBench
@@ -130,7 +132,7 @@ bash scripts/v1_5/eval/pope.sh $layer $token_num
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/mmbench.sh $layer $token_num
+bash scripts/v1_5/eval/mmbench.sh $token_num $token_complement
 ```
 
 3. Submit the results to the [evaluation server](https://opencompass.org.cn/leaderboard-multimodal): `../data/eval/mmbench/answers_upload/mmbench_dev_20230712`.
@@ -142,7 +144,7 @@ bash scripts/v1_5/eval/mmbench.sh $layer $token_num
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/mmbench_cn.sh $layer $token_num
+bash scripts/v1_5/eval/mmbench_cn.sh $token_num $token_complement
 ```
 
 3. Submit the results to the evaluation server: `../data/eval/mmbench/answers_upload/mmbench_dev_cn_20231003`.
@@ -155,7 +157,7 @@ bash scripts/v1_5/eval/mmbench_cn.sh $layer $token_num
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/seed.sh $layer $token_num
+bash scripts/v1_5/eval/seed.sh $token_num $token_complement
 ```
 
 ### MM-Vet
@@ -165,7 +167,7 @@ bash scripts/v1_5/eval/seed.sh $layer $token_num
 
 ```Shell
 method=VisionTrim
-bash scripts/v1_5/eval/mmvet.sh $layer $token_num
+bash scripts/v1_5/eval/mmvet.sh $token_num $token_complement
 ```
 
 3. Evaluate the predictions in `../data/eval/mmvet/results` using the official Jupyter notebook.
