@@ -185,6 +185,10 @@ We are grateful for the open-source contributions of other projects:
 
 If you find our VisionTrim useful for your research, please consider giving this repository a star and citing our paper as follows:
 ```bibtex
-@misc{
+@article{yu2026visiontrim,
+  title={VisionTrim: Unified Vision Token Compression for Training-Free MLLM Acceleration},
+  author={Yu, Hanxun and Li, Wentong and Qu, Xuan and Wang, Song and Chen, Junbo and Zhu, Jianke},
+  journal={arXiv preprint arXiv:2601.22674},
+  year={2026}
 }
 ```
