@@ -14,7 +14,7 @@ Multimodal large language models (MLLMs) suffer from high computational costs du
 #
 ### 📰 News
 * **`Feb. 7th, 2026`:** The code has been made publicly accessible.
-* **`Feb. 2nd, 2026`:** Paper is available at [arXiv](https://arxiv.org/abs/2601.22674).
+* **`Feb. 2nd, 2026`:** Paper is now available at [arXiv](https://arxiv.org/abs/2601.22674).
 * **`Jan. 26th, 2026`:** VisionTrim is accepted by ICLR 2026!
 
 ## ⚙️ Setup
