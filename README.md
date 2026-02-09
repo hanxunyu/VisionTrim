@@ -13,6 +13,7 @@ This is an official repository for the paper ["VisionTrim: Unified Vision Token 
 Multimodal large language models (MLLMs) suffer from high computational costs due to excessive visual tokens, particularly in high-resolution and video-based scenarios. Existing token reduction methods typically focus on isolated pipeline components and often neglect textual alignment, leading to performance degradation. In this paper, we propose VisionTrim, a unified framework for training-free MLLM acceleration, integrating two effective plug-and-play modules: 1) the Dominant Vision Token Selection (DVTS) module, which preserves essential visual tokens via a global-local view, and 2) the Text-Guided Vision Complement (TGVC)module, which facilitates context-aware token merging guided by textual cues.
 #
 ### 📰 News
+* **`Feb. 7th, 2026`:** The code has been made publicly accessible.
 * **`Feb. 2nd, 2026`:** Paper is available at [arXiv](https://arxiv.org/abs/2601.22674).
 * **`Jan. 26th, 2026`:** VisionTrim is accepted by ICLR 2026!
 
